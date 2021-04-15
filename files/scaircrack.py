@@ -60,6 +60,7 @@ def main():
         mic = hmac.new(ptk[0:16], data, hashlib.sha1)
 
         # Compare the two MIC
+        # Truncate 4 bytes from the hash because sha1 result with 20 bytes when only the first 16 are needed
         if mic_to_test == mic.digest()[:-4]:
             print("\nResults of the key expansion")
             print("=============================")
